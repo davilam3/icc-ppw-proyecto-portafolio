@@ -2,6 +2,9 @@ import { CanActivateFn, Router } from '@angular/router';
 import { AuthService } from '../services/firebase/auth';
 import { inject } from '@angular/core';
 
+
+
+
 export const publicGuard: CanActivateFn = (route, state) => {
   const authService = inject(AuthService);
   const router = inject(Router);

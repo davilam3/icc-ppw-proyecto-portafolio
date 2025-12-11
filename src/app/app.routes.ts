@@ -7,7 +7,7 @@ import { publicGuard } from './core/guards/public-guard';
 
 export const routes: Routes = [
 
-    
+
     {
         path: '',
         redirectTo: 'inicio',
@@ -27,7 +27,6 @@ export const routes: Routes = [
             import('./features/auth/pages/register-page/register-page').then(m => m.RegisterPage),
         canActivate: [publicGuard]
     },
-
     {
         path: 'inicio',
         loadComponent: () =>
@@ -35,7 +34,7 @@ export const routes: Routes = [
     },
     {
         path: 'contacto',
-        loadComponent: ()  =>
+        loadComponent: () =>
             import('./features/contacto/contacto').then(m => m.Contacto),
     },
 

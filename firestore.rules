@@ -24,5 +24,16 @@ service cloud.firestore {
       allow delete: if request.auth != null && 
                        resource.data.userId == request.auth.uid;
     }
+    // Usuarios
+    match /usuarios/{uid} {
+      allow read: if true;
+      allow write: if request.auth.uid == uid;
+    }
+
+    // Proyectos del programador
+    match /portafolios/{uid}/proyectos/{id} {
+      allow read: if true;
+      allow write: if request.auth.uid == uid;
+    }
   }
 }

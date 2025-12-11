@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed, effect, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
+import { CommonModule } from '@angular/common';
 import { AuthService } from '../../core/services/firebase/auth';
 
 @Component({
   selector: 'app-navbar',
-  imports: [RouterLink],
+  imports: [RouterLink, CommonModule],
   templateUrl: './navbar.html',
-  styleUrl: './navbar.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 
@@ -20,6 +20,11 @@ export class Navbar {
 
   currentUser = this.authService.currentUser;
   isAuthenticated = this.authService.isAuthenticated;
+
+  // Signals de rol
+  userRole = this.authService.userRole;
+  esAdmin = this.authService.esAdmin;
+  esProgramador = this.authService.esProgramador;
 
   favoritesService: any;
 
@@ -36,7 +41,7 @@ export class Navbar {
   // isAuthenticated(): boolean {
   //   return this.authService.isAuthenticated();
   // }
-    // isAuthenticated = computed(() => this.currentUser() !== null);
+  // isAuthenticated = computed(() => this.currentUser() !== null);
 
   /**
    * Cierra la sesión del usuario
@@ -53,7 +58,41 @@ export class Navbar {
       });
     }
   }
-  
+  /** ------------------------
+  *  SCROLL DE EQUIPO
+  * --------------------------
+  */
+  async scrollToPerfiles(event: Event) {
+    event.preventDefault();
+
+    const scrollToElement = () => {
+      const el = document.getElementById('equipo');
+      if (!el) return;
+
+      // Distancia real hasta el elemento
+      const top = el.getBoundingClientRect().top + window.scrollY;
+
+      // Altura del navbar (ajústalo si cambia)
+      const navbarHeight = 90;
+
+      window.scrollTo({
+        top: top - navbarHeight,
+        behavior: 'smooth'
+      });
+    };
+
+    // Si ya estás en /inicio simplemente hace scroll
+    if (this.router.url.includes('/inicio')) {
+      scrollToElement();
+      return;
+    }
+
+    // Si vienes de otra página
+    await this.router.navigate(['/inicio']);
+
+    // Espera un momento a que cargue la vista
+    setTimeout(() => scrollToElement(), 120);
+  }
 
   /** ------------------------
   *  SCROLL DE PROYECTOSS
@@ -114,36 +153,4 @@ export class Navbar {
     }
   }
 
-
-
-
 }
-
-
-
-//  authService = inject(AuthService);
-// ruter = inject(Router);
-
-//  menuOpen = false;
-// userInitial = '';
-// isProgramador = false;
-
-// constructor() {
-// if (this.authService.isAuthenticated()) {
-//  const email = this.authService.currentUserEmail;
-// this.userInitial = email ? email[0].toUpperCase() : '?';
-
-//     // Correos de programadores autorizados
-//     const programadores = ['diana@gmail.com', 'sebas@gmail.com'];
-//      this.isProgramador = programadores.includes(email);
-//   }
-//  }
-
-// toggleMenu() {
-//    this.menuOpen = !this.menuOpen;
-//  }
-
-// logout() {
-//   this.authService.logout();
-//   this.router.navigate(['/login']);
-// }

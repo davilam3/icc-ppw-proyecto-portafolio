@@ -1,116 +1,106 @@
 <!-- ============================== -->
 <!-- SECCIÓN NAVBAR -->
 <!-- ============================== -->
- 
+
 <section class="w-full bg-cyan-900 shadow-md fixed top-0 left-0 z-50">
 
-  <div class="navbar px-8 max-w-6xl mx-auto w-full text-white flex justify-between items-center">
+  <div class="navbar px-8 max-w-6xl mx-auto w-full text-white flex justify-between items-center h-20 md:h-20">
 
     <!-- LOGO + NOMBRE -->
-    <div class="flex items-center gap-3 py-3">
+    <div class="flex items-center gap-5">
       <img src="assets/logo.jpg" alt="logo" class="h-12 w-12 rounded-full border border-white shadow">
-      <span class="font-Lora text-xl tracking-wide font-bold">
+      <span class="font-Lora text-xl tracking-wide font-bold text-white">
         D&S | DevStudio
       </span>
     </div>
 
     <!-- LINKS CENTRALES -->
-    <div class="flex gap-8 text-[15px]">
-
+    <div class="hidden md:flex gap-8 text-white text-[15px]">
       <a href="#" (click)="goHome($event)"
         class="relative after:block after:h-0.5 after:w-0 after:bg-cyan-950 after:transition-all after:duration-300 hover:after:w-full">
         Inicio
       </a>
-
+      <a href="#" (click)="scrollToPerfiles($event)"
+        class="relative after:block after:h-0.5 after:w-0 after:bg-cyan-950 after:transition-all after:duration-300 hover:after:w-full">
+        Equipo
+      </a>
       <a href="#" (click)="scrollToProjects($event)"
         class="relative after:block after:h-0.5 after:w-0 after:bg-cyan-950 after:transition-all after:duration-300 hover:after:w-full">
         Proyectos
       </a>
-
-       <a routerLink="/contacto"
+      <a routerLink="/contacto"
         class="relative after:block after:h-0.5 after:w-0 after:bg-cyan-950 after:transition-all after:duration-300 hover:after:w-full">
         Contacto
       </a>
-
     </div>
 
-    <!-- BOTÓN LOGIN A LA DERECHA -->
+    <!-- BOTONES Y OPCIONES DE USUARIO -->
     <div class="flex items-center gap-4">
 
-      <!-- <a routerLink="/login"
-        class="px-4 py-2 rounded-md bg-white text-cyan-900 font-semibold shadow hover:bg-cyan-100 transition">
-        Iniciar Sesión
-      </a> -->
+      <!-- Botón Agendar Asesoría para programadores -->
+      @if (isAuthenticated() && esProgramador()) {
+      <a routerLink="/agendar-asesoria"
+        class="font-bold text-blue-300 hover:text-white transition">
+        📅  Asesorías
+      </a>
+      }
+
+      <!-- Opciones según rol -->
+      @if (isAuthenticated()) {
+        @if (esAdmin()) {
+        <a routerLink="/panel-admin" class="font-bold text-yellow-300 hover:text-white transition">
+          ⚙️ Panel Admin
+        </a>
+        } @else if (esProgramador()) {
+        <a routerLink="/mi-portafolio" class="font-bold text-green-300 hover:text-white transition">
+          📁 Mi Portafolio
+        </a>
+        }
+      }
 
       <!-- Área de usuario/login -->
-      <div class="mx-2 flex-1">
-        <div class="flex items-center gap-3 ">
+      @if (!isAuthenticated()) {
+      <button (click)="navigateToLogin()"
+        class="px-4 py-2 rounded-md bg-white text-cyan-900 font-semibold shadow hover:bg-cyan-100 transition">
+        Iniciar Sesión
+      </button>
+      }
 
-          <!-- Mostrar botón login si NO está autenticado -->
-          @if
-          (!isAuthenticated()) { 
-            <button (click)="navigateToLogin()"
-            class="px-4 py-2 rounded-md bg-white text-cyan-900 font-semibold shadow hover:bg-cyan-100 transition"> 
-            Iniciar Sesión </button> }
-
-          <!-- Mostrar email si está autenticado -->
-          <!-- Mostrar dropdown de usuario si está autenticado -->
-          @if (isAuthenticated() && currentUser()) {
-          <div class="dropdown dropdown-end">
-            <label tabindex="0" class="btn btn-ghost btn-circle avatar">
-              <div class="w-10 rounded-full bg-blue-100 text-primary-content flex items-center justify-center">
-                <span class="text-lg font-bold">
-                  {{ currentUser()?.email?.charAt(0)?.toUpperCase() }}
-                </span>
-              </div>
-            </label>
-
-            <ul tabindex="0" class="mt-3 z-1 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-56">
-              <li class="menu-title">
-                <span class="text-xs">{{ currentUser()?.email }}</span>
-              </li>
-
-              <div class="divider my-0"></div>
-
-              <li>
-                <button (click)="logout()" class="btn btn-error btn-sm w-full text-left">
-                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
-                    stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                  </svg>
-                  Cerrar Sesión
-                </button>
-              </li>
-            </ul>
+      @if (isAuthenticated() && currentUser()) {
+      <div class="dropdown dropdown-end">
+        <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+          <div class="w-10 rounded-full bg-blue-100 text-primary-content flex items-center justify-center">
+            <span class="text-lg font-bold">
+              {{ currentUser()?.email?.charAt(0)?.toUpperCase() }}
+            </span>
           </div>
-          }
-        </div>
+        </label>
+
+        <ul tabindex="0" class="mt-3 p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-56">
+          <li class="menu-title"><span class="text-xs">{{ currentUser()?.email }}</span></li>
+          <li class="menu-title text-center">
+            <span class="text-xs font-bold text-primary">
+              @switch(userRole()) {
+              @case('admin') { 👤 Administrador }
+              @case('programador') { 💻 Programador }
+              @default { 👥 Usuario }
+              }
+            </span>
+          </li>
+          <div class="divider my-0"></div>
+          <li>
+            <button (click)="logout()" class="btn btn-error btn-sm w-full text-left flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+              </svg>
+              Cerrar Sesión
+            </button>
+          </li>
+        </ul>
       </div>
+      }
     </div>
+
   </div>
 </section>
-
-
-
-
-
-
-
-<!-- <a href="#" (click)="goHome($event)"
-        class="relative after:block after:h-0.5 after:w-0 after:bg-cyan-950 after:transition-all after:duration-300 hover:after:w-full">
-        Inicio
-      </a>
-
-      <a href="#" (click)="scrollToProjects($event)"
-        class="relative after:block after:h-0.5 after:w-0 after:bg-cyan-950 after:transition-all after:duration-300 hover:after:w-full">
-        Proyectos
-      </a> -->
-<!-- <a routerLink="/inicio"
-          class="relative after:block after:h-0.5 after:w-0 after:bg-cyan-950 after:transition-all after:duration-300 hover:after:w-full">
-          Inicio
-        </a> -->
-<!-- <a routerLink="/contacto"
-          class="relative after:block after:h-0.5 after:w-0 after:bg-cyan-950 after:transition-all after:duration-300 hover:after:w-full">
-          Contacto
-        </a> -->

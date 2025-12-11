@@ -1,32 +1,39 @@
 <!-- ============================== -->
-<!-- SECCIÓN HERO -->
+<!-- SECCIÓN HERO ANIMADA -->
 <!-- ============================== -->
 
-<section class="w-full flex justify-center px-6 pt-32 pb-16 bg-white">
-  <!-- CONTENEDOR GENERAL -->
-  <div class="flex flex-col items-center text-center max-w-4xl">
+<section class="relative w-full px-6 pt-40 pb-32 bg-gradient-to-b from-white to-gray-100 overflow-hidden">
 
-    <div class="text-center mb-16">
+  <!-- FONDOS DECORATIVOS -->
+  <div class="absolute inset-0 -z-10 opacity-10">
+    <div class="absolute top-10 left-20 w-72 h-72 bg-cyan-300 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-10 right-20 w-80 h-80 bg-blue-500 rounded-full blur-3xl"></div>
+  </div>
 
-      <h1 class="text-6xl font-extrabold tracking-wide text-cyan-900 font-serif">
-        D&S • DevStudio
-      </h1>
+  <!-- CONTENEDOR PRINCIPAL -->
+  <div class="max-w-5xl mx-auto flex flex-col items-center text-center">
 
-      <p class="text-xl text-gray-600 font-light italic mt-3">
-        "Aprendiendo, creando y avanzando en el mundo tecnológico."
-      </p>
+    <!-- TÍTULO CON SLIDE-IN -->
+    <h1 class="slide-in text-7xl md:text-8xl font-extrabold tracking-tight text-cyan-900 drop-shadow-sm">
+      D&S<span class="text-cyan-600"> DevStudio</span>
+    </h1>
 
-      <p class="text-2xl text-gray-700 font-light mt-10 max-w-3xl mx-auto">
-        Somos Diana y Sebastián, estudiantes apasionados por la tecnología, el desarrollo
-        web y la innovación digital.
-      </p>
+    <!-- SUBTÍTULO FADE-UP -->
+    <p class="fade-up mt-6 text-2xl md:text-3xl text-gray-700 font-light italic">
+      Innovación, desarrollo y aprendizaje continuo.
+    </p>
 
-      <p class="text-2xl text-gray-700 font-light mt-3 max-w-3xl mx-auto">
-        Este es un espacio en donde compartimos nuestros proyectos, habilidades
-        y crecimiento profesional.
-      </p>
+    <!-- DESCRIPCIÓN FADE-UP -->
+    <p class="fade-up mt-10 text-xl md:text-2xl text-gray-700 max-w-3xl leading-relaxed">
+      Somos Diana y Sebastián, estudiantes apasionados por el desarrollo web,
+      la tecnología y la construcción de experiencias digitales que marcan la diferencia.
+    </p>
 
-    </div>
+    <p class="fade-up mt-4 text-xl md:text-2xl text-gray-700 max-w-3xl leading-relaxed">
+      En este portafolio encontrarás nuestros proyectos, aplicaciones,
+      colaboraciones y nuestro progreso profesional dentro del mundo tech.
+    </p>
+
   </div>
 </section>
 
@@ -34,9 +41,21 @@
 <!-- SECCIÓN CARDS -->
 <!-- ============================== -->
 
-<section class="w-full flex justify-center mt-16 px-5 pt-2">
+<section id="equipo" class="w-full flex flex-col items-center mt-16 px-5 pt-20">
 
-  <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+  <!-- TÍTULO DE LA SECCIÓN -->
+  <div class="text-center mb-14">
+    <h2 class="text-4xl md:text-5xl font-extrabold tracking-wide text-cyan-900 font-serif">
+      Equipo de Programadores
+    </h2>
+    <p class="mt-3 text-lg md:text-xl text-gray-600 max-w-2xl">
+      Conoce a los developers que impulsan este proyecto, combinando creatividad,
+      análisis técnico y experiencia en ingeniería de software.
+    </p>
+  </div>
+
+  <!-- AQUÍ VAN TUS CARDS -->
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-2xl">
 
     <!-- CARD DIANA -->
     <div class="card bg-white shadow-lg hover:shadow-2xl hover:-translate-y-2 
