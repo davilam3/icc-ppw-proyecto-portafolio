@@ -1,0 +1,24 @@
+<section class="p-6 max-w-4xl mx-auto">
+  <h2 class="text-2xl font-bold mb-4">Mis Asesorías</h2>
+
+  <div class="card p-4 shadow">
+    <div *ngIf="asesorias?.length === 0" class="text-gray-600">No hay solicitudes aún.</div>
+
+    <ul *ngIf="asesorias?.length">
+      <li *ngFor="let a of asesorias" class="border-b py-3">
+        <div class="flex justify-between items-start">
+          <div>
+            <div class="font-semibold">{{ a.fecha }} {{ a.hora }} — <span class="text-sm">{{ a.estado }}</span></div>
+            <div class="text-sm">Solicitante: <span class="font-medium">{{ a.solicitanteEmail || 'Anónimo' }}</span></div>
+            <div class="text-sm mt-1">{{ a.comentario }}</div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <button *ngIf="a.estado==='pendiente'" (click)="responder(a.id, 'aceptada')" class="btn btn-success btn-sm">Aceptar</button>
+            <button *ngIf="a.estado==='pendiente'" (click)="responder(a.id, 'rechazada')" class="btn btn-error btn-sm">Rechazar</button>
+            <button *ngIf="a.estado!=='pendiente'" (click)="verRespuesta(a)" class="btn btn-ghost btn-sm">Ver respuesta</button>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>

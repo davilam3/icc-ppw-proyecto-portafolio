@@ -37,13 +37,7 @@
     <!-- BOTONES Y OPCIONES DE USUARIO -->
     <div class="flex items-center gap-4">
 
-      <!-- Botón Agendar Asesoría para programadores -->
-      @if (isAuthenticated() && esProgramador()) {
-      <a routerLink="/agendar-asesoria"
-        class="font-bold text-blue-300 hover:text-white transition">
-        📅  Asesorías
-      </a>
-      }
+      <!-- (Agendar Asesoría eliminado) El contacto ya está disponible en 'Contacto' -->
 
       <!-- Opciones según rol -->
       @if (isAuthenticated()) {
@@ -54,6 +48,9 @@
         } @else if (esProgramador()) {
         <a routerLink="/mi-portafolio" class="font-bold text-green-300 hover:text-white transition">
           📁 Mi Portafolio
+        </a>
+        <a routerLink="/mis-asesorias" class="font-bold text-blue-300 hover:text-white transition">
+          📅 Mis Asesorías
         </a>
         }
       }

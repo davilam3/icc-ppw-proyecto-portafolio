@@ -29,9 +29,7 @@
 5. Estructura de Datos (Firestore)
 6. Módulos y Vistas de la Aplicación
 7. Roles y Permisos
-8. Instalación y Configuración
-9. Despliegue en Firebase Hosting
-Capturas (Sugeridas)
+8. Despliegue en Gh-Pages
 
 ---
 
@@ -56,42 +54,41 @@ Este proyecto es una aplicación web tipo portafolio administrable que permite:
 
 ## 2. Tecnologías Utilizadas
 ### Frontend
-* Angular
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/angular/angular-original.svg" width="80" alt="Angular Logo">
+* <div style="display: flex; align-items: center; gap: 16px;"> <img src="./public/assets/angular.svg" width="50" alt="D&S Logo"> <p style="margin:0; padding:0;">HTML5</p> </div>
 
-* TailwindCSS + DaisyUI
-* HTML5
+* <div style="display: flex; align-items: center; gap: 16px;"> <img src="./public/assets/tail.png" width="50" alt="tailwind"> <p style="margin:0; padding:0;">TailwindCSS + DaisyUI</p> </div>
+
+* <div style="display: flex; align-items: center; gap:px;"> <img src="./public/assets/html5.png" width="80" alt="html5"> <p style="margin:0; padding:0;">HTML5</p> </div>
+
 
 ### Backend (Serverless)
 
 * Firebase Authentication
 * Firestore Database
-* Firebase Storage
-* Firebase Hosting
 
 ---
 ## 3. 📂 Arquitectura del Sistema
 
 ```
-/angular
-   ├── docente
-      ├── 01_instalacion.md
-      ├── 02_navegacion_forms.md
-   ├── perez_torres
-      ├── 01_instalacion.md
-      ├── 02_navegacion_forms.md
-/react
-   ├── perez_torres
-      ├── 01_instalacion.md
-      ├── 02_navegacion_forms.md
-/vue
-   ├── perez_torres
-      ├── 01_instalacion.md
-      ├── 02_navegacion_forms.md
-/astro
-   ├── perez_torres
-      ├── 01_instalacion.md
-      ├── 02_navegacion_forms.md
+/src
+   /── app
+      /── componentes
+         ├── back-to-top
+         ├── footer
+         ├── navbar
+      /── core
+         ├── guards
+         ├── models
+         ├── services
+      /── features
+         ├── admin-panel
+         ├── auth
+         ├── contacto
+         ├── homePage
+         ├── perfilPageDiana
+         ├── perfilPageSebas
+         ├── programador-asesorias
+         ├── programador-panel
 README.md
 ```
 ---
@@ -99,64 +96,95 @@ README.md
 #### Autenticación
 
 * Inicio de sesión con Google.
-* Login con correo/contraseña (opcional).
-* Manejo de sesión persistente.
+* Login con correo/contraseña .
+* Manejo de sesión.
 
 ####  Gestión de Usuarios
 
 * El administrador puede crear, editar y eliminar programadores.
 * Cada programador administra su propio portafolio.
-* Los usuarios externos pueden ver portafolios y solicitar asesorías.
+* Los usuarios no autenticados pueden ver la página web pero no solicitar asesorías.
+* Los usuarios autenticados pueden ver la página web y solicitar asesorías.
 
 ####  Gestión de Portafolios
 
 * Perfil profesional (nombre, especialidad, descripción, foto).
-
-Secciones:
 * Proyectos Académicos
 * Proyectos Laborales
 
 ####  Gestión de Proyectos
 
 Cada proyecto incluye:
-
 * Nombre
+* Imagen
 * Descripción
 * Rol (Frontend, Backend)
 * Tecnologías usadas
+* Enlace a los proyectos
 * Enlace a repositorio
-* Imagen
+
 
 ####  Gestión de Asesorías
 
+* Registro de datos personales
 * Registro de horarios por parte del administrador.
-* Solicitud por parte del usuario final.
+* Mensaje por parte del usuario.
 * Panel del programador para aceptar/rechazar.
 ---
 ## 5. 📂 Estructura de Datos (Firestore)
 
+```
+/solicitudes
+   /── UID
+         ├── correo
+         ├── fecha
+         ├── horario
+         ├── mensaje
+         ├── nombre
+         ├── usuario
+```
+```
+/usuarios
+   /── UID_1
+         ├── email
+         ├── nombre
+         ├── rol
+   /── UID_2
+         ├── email
+         ├── nombre
+         ├── rol
+   /── UID_3
+         ├── email
+         ├── nombre
+         ├── rol
+```
 
 ---
 ## 6. Módulos y Vistas de la Aplicación
-### Público
 
+### Usuario No Autenticado
 * Home
 * Lista de programadores
-* Portafolio individual
+* Contacto
+* No Agendar asesoría
+
+### Usuario Autenticado
+* Home
+* Lista de programadores
+* Contacto
 * Agendar asesoría
 
 ### Autenticación
 
-* Login con Google
-* Registro de programadores (solo admin)
-* Edición de perfil
+* Login con Google o correo (usuarios)
+* Registro de programadores.
+* Registro de Admin
 
 ### Administrador
 
 * Dashboard
 * Gestión de usuarios programadores
-* Gestión de disponibilidad
-* Lista general de asesorías
+* Agregar, editar, eliminar, actualizar
 
 ### Programador
 
@@ -171,3 +199,5 @@ Cada proyecto incluye:
 | **Administrador** | CRUD de programadores, horarios y supervisión de asesorías
 | **Programador** | Gestionar su portafolio, proyectos y asesorías propias| 
 | **Usuario** | Navegar portafolios y solicitar asesorías | 
+---
+### 8. Despliegue en Gh-Pages

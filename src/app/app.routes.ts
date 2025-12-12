@@ -45,6 +45,19 @@ export const routes: Routes = [
     },
 
     {
+        path: 'panel-admin',
+        loadComponent: () => import('./features/admin-panel/admin-panel').then(m => m.AdminPanel)
+    },
+    {
+        path: 'mi-portafolio',
+        loadComponent: () => import('./features/programador-panel/programador-panel').then(m => m.ProgramadorPanel)
+    },
+    {
+        path: 'mis-asesorias',
+        loadComponent: () => import('./features/programador-asesorias/programador-asesorias').then(m => m.ProgramadorAsesorias)
+    },
+
+    {
         path: 'sebas',
         loadComponent: () =>
             import('./features/perfilPageSebas/perfilPageSebas').then(m => m.PerfilPageSebas),

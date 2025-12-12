@@ -1,0 +1,43 @@
+<section class="p-6 max-w-5xl mx-auto">
+  <h2 class="text-2xl font-bold mb-4">Panel del Programador</h2>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="card p-4 shadow">
+      <h3 class="font-semibold">Mis Proyectos</h3>
+      <div class="divider"></div>
+      <button (click)="crearProyectoHandler()" class="btn btn-sm mb-3">+ Nuevo Proyecto</button>
+      <ul>
+        <li *ngFor="let p of proyectos">
+          <div class="flex justify-between items-center py-2">
+            <div>
+              <div class="font-bold">{{ p.nombre }}</div>
+              <div class="text-sm text-gray-600">{{ p.descripcion }}</div>
+            </div>
+            <div class="flex gap-2">
+              <button (click)="editarProyectoHandler(p)" class="btn btn-sm">Editar</button>
+              <button (click)="eliminarProyectoHandler(p.id)" class="btn btn-sm btn-error">Eliminar</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="card p-4 shadow">
+      <h3 class="font-semibold">Solicitudes de Asesoría</h3>
+      <div class="divider"></div>
+      <ul>
+        <li *ngFor="let a of asesorias">
+          <div class="py-2">
+            <div class="font-bold">{{ a.fecha }} {{ a.hora }} — {{ a.estado }}</div>
+            <div class="text-sm">Solicitante: <span class="font-semibold">{{ a.solicitanteEmail || 'Anónimo' }}</span></div>
+            <div class="text-sm mt-1">{{ a.comentario }}</div>
+            <div class="mt-2 flex gap-2">
+              <button *ngIf="a.estado==='pendiente'" (click)="responderAsesoria(a.id, 'aceptada')" class="btn btn-success btn-sm">Aceptar</button>
+              <button *ngIf="a.estado==='pendiente'" (click)="responderAsesoria(a.id, 'rechazada')" class="btn btn-error btn-sm">Rechazar</button>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
