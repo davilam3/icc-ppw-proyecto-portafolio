@@ -57,34 +57,34 @@
   <!-- FOR PARA LAS CARDS -->
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-10 w-full max-w-2xl">
-  <div *ngFor="let p of programadores" 
-       class="card bg-white shadow-lg hover:shadow-2xl hover:-translate-y-2 duration-300 w-80 rounded-2xl border border-gray-200">
+    <div *ngFor="let p of programadores"
+      class="card bg-white shadow-lg hover:shadow-2xl hover:-translate-y-2 duration-300 w-80 rounded-2xl border border-gray-200">
 
-    <figure class="p-4">
-      <img [src]="p.fotoURL" class="h-56 w-full object-cover rounded-xl shadow-md" />
-    </figure>
+      <figure class="p-4">
+        <img [src]="p.fotoURL" class="h-56 w-full object-cover rounded-xl shadow-md" />
+      </figure>
 
-    <div class="card-body text-center">
-      <h2 class="text-2xl font-bold text-cyan-900">{{ p.nombre }}</h2>
-      <p class="font-medium text-gray-700">{{ p.especialidad }}</p>
+      <div class="card-body text-center">
+        <h2 class="text-2xl font-bold text-cyan-900">{{ p.nombre }}</h2>
+        <p class="font-medium text-gray-700">{{ p.especialidad }}</p>
 
-      <p class="text-gray-500 text-sm mt-2">
-        Estudiante de Computación – UPS
-      </p>
+        <p class="text-gray-500 text-sm mt-2">
+          Estudiante de Computación – UPS
+        </p>
 
-      <div class="w-40 h-1 bg-cyan-900 mx-auto my-4 rounded-full"></div>
+        <div class="w-40 h-1 bg-cyan-900 mx-auto my-4 rounded-full"></div>
 
-      <!-- SKILLS -->
-      <div class="flex flex-wrap justify-center gap-2">
-        <span *ngFor="let skill of p.skills" class="badge badge-outline border-cyan-900">{{ skill }}</span>
-      </div>
+        <!-- SKILLS -->
+        <div class="flex flex-wrap justify-center gap-2">
+          <span *ngFor="let skill of p.skills" class="badge badge-outline border-cyan-900">{{ skill }}</span>
+        </div>
 
-      <div class="mt-6">
-        <a [routerLink]="p.perfilRoute" class="btn btn-primary w-full">Ver Perfil</a>
+        <div class="mt-6">
+          <a [routerLink]="p.perfilRoute" class="btn btn-primary w-full">Ver Perfil</a>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
 
   <!-- AQUÍ VAN TUS CARDS -->
